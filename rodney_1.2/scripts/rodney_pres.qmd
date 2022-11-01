@@ -1,9 +1,11 @@
 ---
 title: "What Is Underdevelopment?"
 author: ""
-#format: revealjs
+format: revealjs
 output:
   revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["notes", "search"]
     theme: sky
     highlight: pygments
     center: true
@@ -21,10 +23,12 @@ library(ggplot2)
 library(gridExtra)
 library(knitr)
 
-perCap <- read.csv(file = here("data", "world_gdpPerCap.csv"), 
+data_folder <- here("rodney_1.2", "data")
+
+perCap <- read.csv(file = here(data_folder, "world_gdpPerCap.csv"), 
                    header = TRUE, skip = 4) 
 
-perCap1968 <- read.csv(file = here("data", "un1968pci.csv"), 
+perCap1968 <- read.csv(file = here(data_folder, "un1968pci.csv"), 
                        header = TRUE, fileEncoding = "UTF-8-BOM")
 
 names(perCap1968) <- stringr::str_replace_all(names(perCap1968), "\\.", " ")
@@ -55,7 +59,7 @@ names(perCap1968) <- stringr::str_replace_all(names(perCap1968), "\\.", " ")
   
 African and Asian societies that were developing independently were taken over by capitalist powers. Exploitation increased and export of surplus ensued; as a result the people are denied the benefit of their natural resources and labor. This is an *integral* mechanism of contemporary underdevelopment.
 
--------------------------------------------
+---
 
 ### Developing vs. Underdeveloped
 
@@ -105,7 +109,7 @@ dev.off()
 
 ```
 
------------------------------------------
+---
 
 ```{r}
 kable(list(perCap1968, perCap2),
@@ -132,7 +136,7 @@ Life expectancy at birth, education, gross national income per capita
 -   **2022 Global Multidimensional Poverty Index**  
 Nutrition, child mortality, access to cooking fuel, drinking water, electricity, housing, and assets*.  
 
-------------------------
+---
 
 #### Some findings from the MPI report:\  
 
@@ -152,7 +156,8 @@ Nutrition, child mortality, access to cooking fuel, drinking water, electricity,
 ::: notes
 Gallup World Poll survey data - aggregates responses under life expectancy, generosity, social support, freedom to make personal choices, and perceptions of corruption, weighed against categorically positive or negative responses and GDP income.
 :::
------------------------------------------------
+
+---
 
 ## More indicators of underdevelopment  
 
@@ -168,7 +173,7 @@ Gallup World Poll survey data - aggregates responses under life expectancy, gene
 
 -   availability of social services relative to population\  
 
----------------------------------------------------
+---
 
 ### Availability of goods and services indirectly
 
@@ -180,7 +185,7 @@ Gallup World Poll survey data - aggregates responses under life expectancy, gene
 
 -   "Brain Drain" - skilled workers leave for better pay and opportunities elsewhere, then foreign experts must be recruited at high cost to fill those positions
 
----------------------------------------------
+---
 
 #### Underdeveloped economies are characterized by:
 
@@ -192,7 +197,7 @@ Gallup World Poll survey data - aggregates responses under life expectancy, gene
 
 -   primary "industry" is often administration, with inflated salaries and a high number of parliamentarians per capita, therefore most locally-distributed wealth goes to a few.
 
---------------------------------------
+---
 
 ### How is national wealth created?  
 
@@ -203,7 +208,7 @@ Gallup World Poll survey data - aggregates responses under life expectancy, gene
     - done by workers and peasants, without whom there would be no incomes to tax
     - incomes from professionals, civil servants, and merchants come from wealth produced by the community
 
---------------------------------------
+---
 
 #### Wrong answers only...
 
@@ -217,11 +222,11 @@ Gallup World Poll survey data - aggregates responses under life expectancy, gene
 Underdeveloped countries have the greatest wealth of natural resources but are the poorest in goods and services provided by and for the citizens. Africa is not making the most of its natural wealth, and what is produced is not retained for the benefit of African people.
 :::
 
---------------------------------------------------
+---
 
 >The fact of the matter is that the most profound reasons for the economic backwardness of a given African nation are not to be found inside that nation. All that we can find inside are the symptoms of underdevelopment and the secondary factors that make for poverty.   
 
---------------------------------------------------
+---
 
 ## The cause is exploitation
 
@@ -245,7 +250,7 @@ Instead of prejudiced thinking and looking inside, we must seek out the relation
 Most scholars on underdevelopment are spokesmen for the capitalist or bourgeois world, and seek to justify exploitation in and outside of their own countries. They divide the world into developed and underdeveloped countries, never accounting for social systems. Their explanations suit the interests of their countries and exploit the rest of the world through trade and investment.
 :::
 
-----------------------------------
+---
 
 #### What brought Africa into the capitalist system?  
 
@@ -257,7 +262,7 @@ Most scholars on underdevelopment are spokesmen for the capitalist or bourgeois 
 
 -   Wealth created by African resources and labor was grabbed by capitalist countries of Europe, resulting in restrictions on African capacity to maximize economic potential
 
---------------------------------------
+---
 
 ### Structural Dependence  
 
@@ -276,7 +281,7 @@ African economies integrated into the structure of developed capitalist economie
 Economic independence is not the same as isolation, but does require the capacity to exercise choice in external relations, and that the nation's growth become self-reliant and self-sustaining.
 :::
 
--------------------------------------------
+---
 
 ### Structural Integration
 
@@ -288,7 +293,7 @@ Economic independence is not the same as isolation, but does require the capacit
 
 -   Music - using the music of oppressed black people as a tool for American propaganda\  
 
----------------------------------------------
+---
 
 ### Political subordination 
 
@@ -299,18 +304,18 @@ Economic independence is not the same as isolation, but does require the capacit
 -   Political instability - repeat military coups, sometimes reactionary against an attempt at national liberation\  
     
 
---------------------------------------------------
+---
 
 #### The main ideas this study will focus on are:  
 1. The operation of the imperialist system draining wealth and making it impossible to more rapidly develop resources
 
 2. Those who manipulate the system and agents or accomplices of said system; namely, the capitalists of Western Europe who have extended their exploitation to the whole of Africa, more recently joined by US capitalists, so that even the workers of the metropolitan countries benefit from the underdevelopment and exploitation of Africa.
 
---------------------------------------------------
+---
 
 >None of these remarks are intended to remove the ultimate responsibility for development from the shoulders of Africans. Not only are there African accomplices inside the imperialist system, but every African has a responsibility to understand the system and work for its overthrow.
 
---------------------------------------------------
+---
 
 ### Links
 
