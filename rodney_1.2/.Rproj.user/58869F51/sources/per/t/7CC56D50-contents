@@ -1,0 +1,323 @@
+---
+title: "What Is Underdevelopment?"
+author: ""
+format: revealjs
+output:
+  revealjs::revealjs_presentation:
+    theme: blood
+    highlight: pygments
+    center: true
+---
+
+
+
+```{r setup,include=FALSE}
+#|  context: setup
+#|  include: false
+
+library(here)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
+library(knitr)
+
+perCap <- read.csv(file = here("data", "world_gdpPerCap.csv"), 
+                   header = TRUE, skip = 4) 
+
+perCap1968 <- read.csv(file = here("data", "un1968pci.csv"), 
+                       header = TRUE, fileEncoding = "UTF-8-BOM")
+
+names(perCap1968) <- stringr::str_replace_all(names(perCap1968), "\\.", " ")
+```
+
+## What is underdevelopment?
+
+-   Underdevelopment is not the absence of development, but a way of comparing *levels* of development. 
+
+-   Differences in development are tied to:\
+
+    -   uneven human social development
+    -   economic advancement of some human groups by furthering production & increasing wealth
+
+## Underdevelopment is always a comparison
+
+-   Adam Smith, Wealth of Nations (1776) - division of labor, productivity, free markets
+
+-   Africa, Asia, and Latin America can be said to be underdeveloped in comparison to Europe and North America. We can analyze underdevelopment by:
+
+    -   Comparing economic conditions in a single country or region over different time periods
+
+    -   Comparing two countries with one another in the same time period
+
+## Exploitation
+
+> All of the countries named as "underdeveloped" in the world are exploited by others; and the underdevelopment with which the world is now preoccupied is a product of capitalist, imperialist, and colonialist exploitation.  
+  
+African and Asian societies that were developing independently were taken over by capitalist powers. Exploitation increased and export of surplus ensued; as a result the people are denied the benefit of their natural resources and labor. This is an *integral* mechanism of contemporary underdevelopment.
+
+-------------------------------------------
+
+### Developing vs. Underdeveloped
+
+-   Typically done to avoid interpretation as underdeveloped morally, physically, mentally, or any other connotation
+
+-   "Developing" implies that Africa, Asia, and Latin America are escaping a state of backwardness relative to industrial nations and emancipating themselves from exploitation
+
+> Actually, if "underdevelopment" were related to anything other than comparing economies, then the most underdeveloped country in the world would be the United States, which practices external oppression on a massive scale, while internally there is a blend of exploitation, brutality, and psychiatric disorder.
+
+
+## How is underdevelopment measured? 
+
+Economists make comparisons by looking at:  
+
+-   What goods and services are produced\  
+
+-   National income (of countries)\  
+
+-   Per capita income (a national average)\  
+\   
+Considering the state of development only in these ways, apart from the state of underdevelopment, hides gross inequalities in land distribution, property holding, and income behind national figures.
+
+::: notes
+Let's talk about math! Zeros, missingness, and skewed wealth gaps: Why means & medians aren't very useful measures Could make income data more robust by breaking down in \$ ranges, even with 0 as its own range, break down each into age groups, gender groups, etc
+:::
+
+
+```{r,echo=FALSE,include=FALSE}
+perCap2 <- perCap |> 
+  filter(Country.Name %in% c("Canada", "United States", "France", "United Kingdom", 
+                             "Africa Eastern and Southern", "Africa Western and Central",
+                             "Congo, Dem. Rep.", "Ghana", "Kenya", "Malawi", "Morocco", 
+                             "South Africa", "Tanzania", "Egypt, Arab Rep.")) |> 
+  select(Country.Name, X2021) |> 
+  mutate(X2021 = round(X2021, 0),
+         Country.Name = stringr::str_replace_all(Country.Name, c("United Kingdom" = "UK", 
+                                                        ", Arab Rep." = ""))) |> 
+  arrange(desc(X2021)) |> 
+  rename(Countries = Country.Name, `Per Capita Income in USD` = X2021)
+
+rownames(perCap2) <- c()
+
+
+png("perCap2021.png", height = 600, width = 400)
+grid.table(perCap2)
+dev.off()
+
+```
+
+-----------------------------------------
+
+```{r}
+kable(list(perCap1968, perCap2),
+      caption = "Per Capita Income in US Dollars in 1968 vs 2021",
+      col.names = NULL,
+      valign = "t",
+      longtable = TRUE,
+      booktabs = TRUE) %>%
+  kableExtra::kable_styling(font_size = 28)
+```
+::: notes
+These standard comparisons are still useful for comparing countries with one another. Looking at these we can clearly see the wealth gap that defines developed vs. underdeveloped, and between them we can see that gap increasing; in 1968 PCI for the US was 6.5 South Africa's; today it is 10x. Ghana 1968: 18; 2021: >28.\  
+
+Control of international trade is also decreasing for underdeveloped nations: ~30% in 1938, dropped to <20% by the 1960s. Agricultural output fell in many underdeveloped nations in and after 1966, and the output of food per person in Africa was also declining.
+Rodney also mentions here that socialist countries have the highest economic growth rates, followed by capitalist, then colonies and ex-colonies.
+:::
+
+
+## Measuring development today
+
+-   **UN Human Development Index**  
+Life expectancy at birth, education, gross national income per capita  
+
+-   **2022 Global Multidimensional Poverty Index**  
+Nutrition, child mortality, access to cooking fuel, drinking water, electricity, housing, and assets*.  
+
+------------------------
+
+#### Some findings from the MPI report:\  
+
+  -   More than 50% of poor people (593 million) lack both electricity and clean cooking fuel 
+  
+  -   Almost 40% of poor people (437 million) lack access to both drinking water & sanitation 
+  
+  -   More than 30% of poor people (374 million) are deprived of nutrition, cooking fuel, sanitation and housing at the same time\    
+
+
+-------------------------------------------------
+
+## World Happiness Report  
+
+![Percentage of population performing benevolent acts in 2020 and 2021 compared to 2017-2019. *Source:  <https://worldhappiness.report/ed/2022/happiness-benevolence-and-trust-during-covid-19-and-beyond/>*](https://worldhappiness.report/assets/images/2022/ch02/Fig.2.6.webp){width=90%,height=90}
+
+::: notes
+Gallup World Poll survey data - aggregates responses under life expectancy, generosity, social support, freedom to make personal choices, and perceptions of corruption, weighed against categorically positive or negative responses and GDP income.
+:::
+-----------------------------------------------
+
+## More indicators of underdevelopment  
+
+-   amount of steel used
+    - US: 685kg/person; Zambia: 10kg; Ethiopia: 2kg\  
+
+-   sugar consumption 
+    - Australia: 57kg/person; Africa: 10kg; Asia: 7kg\  
+
+-   basic food requirements (calories consumed)\  
+
+-   protein content of food\ 
+
+-   availability of social services relative to population\  
+
+---------------------------------------------------
+
+### Availability of goods and services indirectly
+
+-   life expectancy, child mortality, malnutrition, occurrence of preventable disease, literacy rates
+
+-   lack of doctors - Italy: 1/580 citizens; Tunisia: 1/8320; Chad: 1/73640
+
+-   skilled labor - engineers, technicians, agriculturalists, lawyers, even middle-level skills like welding may be missing
+
+-   "Brain Drain" - skilled workers leave for better pay and opportunities elsewhere, then foreign experts must be recruited at high cost to fill those positions
+
+---------------------------------------------
+
+#### Underdeveloped economies are characterized by:
+
+-   lack of heavy industry, inadequate food production, and unscientific agriculture
+
+-   do not focus on sectors that generate growth, and few ties exist between sectors
+
+-   savings made are "sent abroad or frittered away on consumption." Much of what remains in the country pays for auxiliary services (civil servants, merchants, soldiers) who do not reinvest in agriculture or industry.
+
+-   primary "industry" is often administration, with inflated salaries and a high number of parliamentarians per capita, therefore most locally-distributed wealth goes to a few.
+
+--------------------------------------
+
+### How is national wealth created?  
+
+-   Taxes do not produce wealth or development
+
+-   Wealth is produced out of nature: tilling the land, mining metals, felling trees, turning raw materials into finished products for consumption
+
+    - done by workers and peasants, without whom there would be no incomes to tax
+    - incomes from professionals, civil servants, and merchants come from wealth produced by the community
+
+--------------------------------------
+
+#### Wrong answers only...
+
+-   Interpretation by capitalist economists that underdevelopment is somehow "ordained by God"
+
+-   Racist trends in European scholarship claim or imply innate superiority and blame Africans for their own situation
+
+-   The "experts" name problems which are consequences of underdevelopment as the causes, such as lack of skilled personnel.
+
+::: notes
+Underdeveloped countries have the greatest wealth of natural resources but are the poorest in goods and services provided by and for the citizens. Africa is not making the most of its natural wealth, and what is produced is not retained for the benefit of African people.
+:::
+
+--------------------------------------------------
+
+>The fact of the matter is that the most profound reasons for the economic backwardness of a given African nation are not to be found inside that nation. All that we can find inside are the symptoms of underdevelopment and the secondary factors that make for poverty.   
+
+--------------------------------------------------
+
+## The cause is exploitation
+
+-  Exploitation of nation by nation
+    - trade terms are one-sided  
+    - ownership of means of production in one country by the citizens of another  
+    - foreign investment - can be in form of loans, aid, or business management  
+
+::: notes
+Instead of prejudiced thinking and looking inside, we must seek out the relationship between Africa an certain developed countries and recognize that relationship is *exploitation.*
+:::
+
+## 
+-   Pierre Jalée - French socialist writer - said the two groups should instead be imperialist and socialist, with the nations in which capitalists have investments also belonging to the imperialist group.
+
+-   UN economic reviews refer to "centrally planned economies" and "market economies", with the latter subdivided into "developed market economies" and "developing market economies"
+
+    - This book will focus on analyzing the relationships between those countries which are together in the capitalist system.
+
+::: notes
+Most scholars on underdevelopment are spokesmen for the capitalist or bourgeois world, and seek to justify exploitation in and outside of their own countries. They divide the world into developed and underdeveloped countries, never accounting for social systems. Their explanations suit the interests of their countries and exploit the rest of the world through trade and investment.
+:::
+
+----------------------------------
+
+#### What brought Africa into the capitalist system?  
+
+-   Trade  
+-   Colonial domination  
+-   Capitalist investment  
+
+#### What brought about underdevelopment?
+
+-   Wealth created by African resources and labor was grabbed by capitalist countries of Europe, resulting in restrictions on African capacity to maximize economic potential
+
+--------------------------------------
+
+### Structural Dependence  
+
+>A dependent nation can never be considered developed.\  
+
+Mutual interdependence  !=  Economic dependence
+
+Economic independence  !=  Isolation
+
+-   The metropoles are dependent on exploited wealth, however, these dependent relationships are not equal.  
+
+-   The imperialists have more advanced technology and can determine the direction of change, deciding when to end their dependence in a particular sector, where the colonized cannot.
+
+::: notes
+African economies integrated into the structure of developed capitalist economies in a manner unfavorable to Africans and which ensures dependence. Rodney says that most progressive writers divide the capitalist/imperialist system into dominant or metropolitan economies, and satellite economies in "orbit" around them. Mutual interdependence is not the same as economic dependence  
+Economic independence is not the same as isolation, but does require the capacity to exercise choice in external relations, and that the nation's growth become self-reliant and self-sustaining.
+:::
+
+-------------------------------------------
+
+### Structural Integration
+
+-   The Christian church - "cultural penetration and cultural dominance"\  
+
+-   Education - educating Africans to service the capitalist system and uphold its values\  
+
+-   Language - French and English are mainly used to communicate with exploiters\  
+
+-   Music - using the music of oppressed black people as a tool for American propaganda\  
+
+---------------------------------------------
+
+### Political subordination 
+
+-   Overt in the colonial period - governors, police, colonial officers\  
+    
+-   "Remote" control in post-colonial period - political puppets who do what they're told\ 
+    
+-   Political instability - repeat military coups, sometimes reactionary against an attempt at national liberation\  
+    
+
+--------------------------------------------------
+
+#### The main ideas this study will focus on are:  
+1. The operation of the imperialist system draining wealth and making it impossible to more rapidly develop resources
+
+2. Those who manipulate the system and agents or accomplices of said system; namely, the capitalists of Western Europe who have extended their exploitation to the whole of Africa, more recently joined by US capitalists, so that even the workers of the metropolitan countries benefit from the underdevelopment and exploitation of Africa.
+
+--------------------------------------------------
+
+>None of these remarks are intended to remove the ultimate responsibility for development from the shoulders of Africans. Not only are there African accomplices inside the imperialist system, but every African has a responsibility to understand the system and work for its overthrow.
+
+--------------------------------------------------
+
+### Links
+
+UNDP Human Development Index  
+<https://hdr.undp.org/data-center/human-development-index#/indicies/HDI>  
+
+2022 Multidimensional Poverty Index Report   <https://hdr.undp.org/content/2022-global-multidimensional-poverty-index-mpi#/indicies/MPI>  
+
+World Happiness Report  
+<https://worldhappiness.report/>  
