@@ -1,10 +1,10 @@
 ---
 title: "What Is Underdevelopment?"
 author: ""
-format: revealjs
+#format: revealjs
 output:
   revealjs::revealjs_presentation:
-    theme: blood
+    theme: sky
     highlight: pygments
     center: true
 ---
