@@ -97,7 +97,7 @@ perCap2 <- perCap |>
 rownames(perCap2) <- c()
 
 
-png("perCap2021.png", height = 600, width = 400)
+png("perCap2021.png")
 grid.table(perCap2)
 dev.off()
 
