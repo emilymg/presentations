@@ -1,14 +1,8 @@
 ---
 title: "What Is Underdevelopment?"
 author: ""
+date: October 27, 2022
 format: revealjs
-output:
-  revealjs::revealjs_presentation:
-    self_contained: false
-    reveal_plugins: ["notes", "search"]
-    theme: sky
-    highlight: pygments
-    center: true
 ---
 
 
