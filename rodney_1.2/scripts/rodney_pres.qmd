@@ -145,7 +145,7 @@ Nutrition, child mortality, access to cooking fuel, drinking water, electricity,
 
 ## World Happiness Report  
 
-![Percentage of population performing benevolent acts in 2020 and 2021 compared to 2017-2019. *Source:  <https://worldhappiness.report/ed/2022/happiness-benevolence-and-trust-during-covid-19-and-beyond/>*](https://worldhappiness.report/assets/images/2022/ch02/Fig.2.6.webp){width=90%,height=90}
+![Percentage of population performing benevolent acts in 2020 and 2021 compared to 2017-2019. *Source:  <https://worldhappiness.report/ed/2022/happiness-benevolence-and-trust-during-covid-19-and-beyond/>*](Fig.2.6.webp){width=90%,height=90}
 
 ::: notes
 Gallup World Poll survey data - aggregates responses under life expectancy, generosity, social support, freedom to make personal choices, and perceptions of corruption, weighed against categorically positive or negative responses and GDP income.
