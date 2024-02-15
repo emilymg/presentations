@@ -58,12 +58,10 @@
     "sass": "^1.39.2",
     "yargs": "^15.1.0"
   },
-  "browserslist": "> 2%, not dead",
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true
-    },
+    "browserslist": [
+    "defaults and fully supports es6-module",
+    "maintained node versions"
+  ]
     "parser": "@babel/eslint-parser",
     "parserOptions": {
       "sourceType": "module",
